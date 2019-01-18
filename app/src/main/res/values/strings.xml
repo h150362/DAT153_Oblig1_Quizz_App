@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Oblig_1_Name-Quizz</string>
+    <string name="action_settings">Settings</string>
+    <string name="Title">Quizz</string>
+    <string name="StartGame">Start Game</string>
+    <string name="Pictures">Pictures</string>
+    <string name="title_activity_data">DataActivity</string>
+    <string name="addPicture">Add Picture</string>
+</resources>

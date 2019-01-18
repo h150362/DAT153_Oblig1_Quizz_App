@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Oblig_1_Name-Quizz</string>
+    <string name="Title">Quizz</string>
+    <string name="StartGame">Start Spill</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="Pictures">Bilder</string>
+    <string name="addPicture">Legg Til Bilde</string>
+</resources>
