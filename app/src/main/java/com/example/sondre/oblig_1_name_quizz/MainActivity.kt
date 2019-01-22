@@ -10,20 +10,18 @@ import android.widget.Button
 
 
 import kotlinx.android.synthetic.main.activity_main.*
+import com.example.sondre.oblig_1_name_quizz.R.id.toolbar
+
+
 
 class MainActivity : AppCompatActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
 
 
         val databaseButton = findViewById<Button>(R.id.button) as Button
@@ -37,9 +35,6 @@ class MainActivity : AppCompatActivity() {
             intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
     }
-
-
-}
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

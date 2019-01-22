@@ -8,4 +8,5 @@
     <string name="addPicture">Add Picture</string>
     <string name="title_activity_quiz">QuizActivity</string>
     <string name="title_activity_add_picture">AddPicture</string>
+    <string name="back">Back</string>
 </resources>

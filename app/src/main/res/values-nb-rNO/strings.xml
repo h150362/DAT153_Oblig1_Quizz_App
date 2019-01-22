@@ -6,4 +6,5 @@
     <string name="action_settings">Innstillinger</string>
     <string name="Pictures">Bilder</string>
     <string name="addPicture">Legg Til Bilde</string>
+    <string name="back">Tilbake</string>
 </resources>

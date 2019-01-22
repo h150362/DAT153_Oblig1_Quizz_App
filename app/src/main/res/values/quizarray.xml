@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="quizzpictures">
+        <item>@drawable/vegar</item>
+        <item>@drawable/atle</item>
+    </integer-array>
+    
+</resources>
