@@ -29,10 +29,15 @@ class DataActivity : AppCompatActivity() {
         setContentView(R.layout.activity_data)
         setSupportActionBar(toolbar)
 
+        //Back knapp
+        supportActionBar!!.title = resources.getString(R.string.back)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+
+
         val layout = findViewById<LinearLayout>(R.id.linear);
 
         val imgs:TypedArray = getResources().obtainTypedArray(R.array.quizzpictures);
-
 
 
         for (i in 0..imgs.length()-1) {
