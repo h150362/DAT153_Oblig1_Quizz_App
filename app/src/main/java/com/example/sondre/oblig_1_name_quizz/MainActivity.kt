@@ -1,10 +1,12 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,11 +17,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
+        val picButton = findViewById<Button>(R.id.picture);
+
+        //Klikk på bildeknapp som starter ny aktivitet til DataActivity.
+        picButton.setOnClickListener{
+            // Starter ny aktivitet
+            val intent = Intent(this, DataActivity::class.java);
+            startActivity(intent);
         }
+
     }
+
+
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
