@@ -1,14 +1,19 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +24,22 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+
+        val databaseButton = findViewById<Button>(R.id.button) as Button
+        databaseButton.setOnClickListener{
+            intent = Intent(this, DataActivity::class.java)
+            startActivity(intent)
+        }
+
+        val quizButton = findViewById<Button>(R.id.start)
+        quizButton.setOnClickListener{
+            intent = Intent(this, QuizActivity::class.java)
+            startActivity(intent)
     }
+
+
+}
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
