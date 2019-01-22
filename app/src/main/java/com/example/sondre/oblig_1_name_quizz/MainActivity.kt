@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val databaseButton = findViewById<Button>(R.id.button) as Button
+        val databaseButton = findViewById<Button>(R.id.picture) as Button
         databaseButton.setOnClickListener{
             intent = Intent(this, DataActivity::class.java)
             startActivity(intent)
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         quizButton.setOnClickListener{
             intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
-    }
+    }}
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

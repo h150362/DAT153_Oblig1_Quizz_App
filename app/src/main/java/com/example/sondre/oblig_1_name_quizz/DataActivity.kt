@@ -1,5 +1,7 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.content.Intent
+import android.content.res.TypedArray
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.renderscript.Script
@@ -32,28 +34,14 @@ class DataActivity : AppCompatActivity() {
 
 
         val layout = findViewById<LinearLayout>(R.id.linear);
-        val imgs:TypedArray = getResources().obtainTypedArray(R.array.QuizArray)
-
-        for(i in 0..imgs.length()) {
-           val image = imgs.getResourceId(i, 0)
-            val imageText = imgs.getText(i)
-
-            val imageView = ImageView(this)
-            val textView = TextView(this)
 
 
-            imageView.setImageResource(image)
-            textView.setText(imageText)
-
-            layout.addView(imageView)
-            layout.addView(textView)
-        }
 
         val AddButton = findViewById<Button>(R.id.AddPicture)
-        AddButton.setOnClickListener{
+        AddButton.setOnClickListener {
             intent = Intent(this, AddPicture::class.java)
             startActivity(intent)
-
+        }
 
         val imgs:TypedArray = getResources().obtainTypedArray(R.array.quizzpictures);
 
@@ -91,4 +79,4 @@ class DataActivity : AppCompatActivity() {
 
 
 }
-    }
+
