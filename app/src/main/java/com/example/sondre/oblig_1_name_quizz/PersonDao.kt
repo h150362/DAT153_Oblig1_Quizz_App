@@ -14,15 +14,18 @@ interface PersonDao {
         @Query("SELECT * FROM person WHERE uid IN (:userIds)")
         fun loadAllByIds(userIds: IntArray): List<Person>
 
-        @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
+
+        @Query("SELECT * FROM person WHERE first_name LIKE :first AND " +
                 "last_name LIKE :last LIMIT 1")
         fun findByName(first: String, last: String): Person
+
 
         @Insert
         fun insertAll(vararg users: Person)
 
         @Delete
         fun delete(user: Person)
+
     }
 
 

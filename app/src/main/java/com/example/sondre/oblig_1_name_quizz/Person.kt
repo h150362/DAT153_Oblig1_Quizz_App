@@ -10,4 +10,6 @@ data class Person(
     @PrimaryKey var uid: Int,
     @ColumnInfo(name = "first_name") var first_name: String?,
     @ColumnInfo(name = "last_name") var picturePath: String?
-)
+){
+    constructor():this(0,"","")
+}

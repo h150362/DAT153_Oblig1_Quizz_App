@@ -1,7 +1,9 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
@@ -16,12 +18,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var db: AppDatabase? = null
+
+
+    private val mUiHandler = Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        db = AppDatabase.getInstance(this)
 
+         //Room.databaseBuilder(this.applicationContext, AppDatabase::class.java, "person.db").allowMainThreadQueries().build()
 
 
         val databaseButton = findViewById<Button>(R.id.picture) as Button

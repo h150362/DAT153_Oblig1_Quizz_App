@@ -41,7 +41,7 @@ class DataActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val imgs:TypedArray = getResources().obtainTypedArray(R.array.quizzpictures);
+        val imgs:TypedArray = getResources().obtainTypedArray(R.array.QuizArray);
 
 
         for (i in 0..imgs.length()-1) {
