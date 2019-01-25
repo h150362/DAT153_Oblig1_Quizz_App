@@ -86,9 +86,8 @@ class AddPicture : Activity() {
         Log.i("Ours","Now at the right time!")
         val person = Person(uid = 1, first_name = "Atle", picturePath = mCurrentPhotoPath)
 
-       // db.personDao().insertAll(person)
-
-       // Manager.getInstance().savePerson(person);
+        db.personDao().insertAll(person)
+        Manager.getInstance().savePerson(person);
         Log.i("Ours","Person made! ")
 
 } }
