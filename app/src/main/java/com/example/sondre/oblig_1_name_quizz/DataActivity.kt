@@ -3,22 +3,20 @@ package com.example.sondre.oblig_1_name_quizz
 import android.content.Intent
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.renderscript.Script
-import android.support.design.widget.Snackbar
+
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.util.TypedValue
+
+
 import android.view.Gravity
-import android.view.ViewGroup
+
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import kotlinx.android.synthetic.*
+
 
 import kotlinx.android.synthetic.main.activity_data.*
-import org.w3c.dom.Text
+
 
 class DataActivity : AppCompatActivity() {
 

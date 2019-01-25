@@ -1,28 +1,33 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.app.Activity
+import android.arch.persistence.room.Room
 import android.content.Intent
-import android.graphics.Bitmap
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.design.widget.Snackbar
+
 import android.support.v4.content.FileProvider
-import android.support.v7.app.AppCompatActivity;
+
+import android.util.Log
 import android.widget.Button
 
-import kotlinx.android.synthetic.main.activity_add_picture.*
+
 import java.io.File
 import java.io.IOException
 import java.util.*
 
-class AddPicture : AppCompatActivity() {
+class AddPicture : Activity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_picture)
-        setSupportActionBar(toolbar)
+        //setSupportActionBar(toolbar)
 
 
         val newPicture = findViewById<Button>(R.id.newPhoto)
@@ -73,6 +78,17 @@ class AddPicture : AppCompatActivity() {
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                }
+            }
+        }
     }
+    override fun onActivityResult(c:Int,r:Int,data:Intent){
+        Log.i("Ours","Now at the right time!")
+        val person = Person(uid = 1, first_name = "Atle", picturePath = mCurrentPhotoPath)
 
-}}}}
+       // db.personDao().insertAll(person)
+
+       // Manager.getInstance().savePerson(person);
+        Log.i("Ours","Person made! ")
+
+} }
