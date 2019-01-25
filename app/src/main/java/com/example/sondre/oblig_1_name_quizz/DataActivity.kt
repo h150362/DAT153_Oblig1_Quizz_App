@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.os.Bundle
 
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 
 
 import android.view.Gravity
@@ -20,10 +21,19 @@ import kotlinx.android.synthetic.main.activity_data.*
 
 class DataActivity : AppCompatActivity() {
 
+    private var db: AppDatabase? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
         setSupportActionBar(toolbar)
+
+
+
+
+       // Log.i("Ours","Now at the right time!")
+
+        db = AppDatabase.getInstance(this)
 
         //Back knapp
         supportActionBar!!.title = resources.getString(R.string.back)
@@ -41,9 +51,20 @@ class DataActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val imgs:TypedArray = getResources().obtainTypedArray(R.array.QuizArray);
 
 
+        //val imgs:TypedArray = getResources().obtainTypedArray(R.array.QuizArray);
+
+
+
+
+        //db?.personDao()?.insertAll(person)
+
+      //  val testPic:List<Person>? = db?.personDao()?.getAll()
+        //val test1 = testPic?.get(0)?.picturePath
+        //Log.i("ours", "TEST: " + test1)
+
+        /*
         for (i in 0..imgs.length()-1) {
 
             imgs.getResourceId(i, 0);
@@ -73,6 +94,7 @@ class DataActivity : AppCompatActivity() {
             layout.addView(nameTextView)
         }
         imgs.recycle();
+        */
     }
 
 

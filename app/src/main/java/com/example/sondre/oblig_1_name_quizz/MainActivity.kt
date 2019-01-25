@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         db = AppDatabase.getInstance(this)
 
-         //Room.databaseBuilder(this.applicationContext, AppDatabase::class.java, "person.db").allowMainThreadQueries().build()
+
+
 
 
         val databaseButton = findViewById<Button>(R.id.picture) as Button

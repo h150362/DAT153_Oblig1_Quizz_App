@@ -7,9 +7,9 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class Person(
-    @PrimaryKey var uid: Int,
+    @PrimaryKey(autoGenerate = true) var uid: Int,
     @ColumnInfo(name = "first_name") var first_name: String?,
-    @ColumnInfo(name = "last_name") var picturePath: String?
+    @ColumnInfo(name = "path") var picturePath: String?
 ){
     constructor():this(0,"","")
 }

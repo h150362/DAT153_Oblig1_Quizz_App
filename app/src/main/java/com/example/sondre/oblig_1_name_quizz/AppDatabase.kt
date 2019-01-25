@@ -19,6 +19,10 @@ abstract class AppDatabase : RoomDatabase() {
             private var INSTANCE: AppDatabase? = null
 
             fun getInstance(context: Context): AppDatabase? {
+
+                //INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                //    AppDatabase::class.java, "person.db").allowMainThreadQueries().build()
+
                 if (INSTANCE == null) {
                     synchronized(AppDatabase::class) {
                         INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
@@ -26,9 +30,11 @@ abstract class AppDatabase : RoomDatabase() {
                             //.build()
                     }
                 }
+
                 return INSTANCE
 
                     }
+
         }
 
 

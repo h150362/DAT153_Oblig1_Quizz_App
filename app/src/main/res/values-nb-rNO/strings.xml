@@ -7,4 +7,5 @@
     <string name="Pictures">Bilder</string>
     <string name="addPicture">Legg Til Bilde</string>
     <string name="back">Tilbake</string>
+    <string name="namePerson">Hvem er dette?</string>
 </resources>
