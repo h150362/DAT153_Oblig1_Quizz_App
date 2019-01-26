@@ -2,6 +2,8 @@ package com.example.sondre.oblig_1_name_quizz
 
 import android.content.Intent
 import android.content.res.TypedArray
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 
 import android.support.v7.app.AppCompatActivity
@@ -28,11 +30,12 @@ class DataActivity : AppCompatActivity() {
         setContentView(R.layout.activity_data)
         setSupportActionBar(toolbar)
 
+        //Konverterer dp til piksler
+        val height: Int = (300 * resources.displayMetrics.density).toInt()
+        val width: Int = (300 * resources.displayMetrics.density).toInt()
+        val layout = findViewById<LinearLayout>(R.id.linear);
 
-
-
-       // Log.i("Ours","Now at the right time!")
-
+        //Database
         db = AppDatabase.getInstance(this)
 
         //Back knapp
@@ -40,61 +43,42 @@ class DataActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
-
-        val layout = findViewById<LinearLayout>(R.id.linear);
-
-
-
+        //Legg til bilde knapp
         val AddButton = findViewById<Button>(R.id.AddPicture)
         AddButton.setOnClickListener {
             intent = Intent(this, AddPicture::class.java)
             startActivity(intent)
         }
 
+        //Deklarerer listen bestående av alle person objektene
+        val personList : List<Person>? = db?.personDao()?.getAll()
 
+        //Sjekker om listen er tom.
+        if(personList?.size != null) {
+            for (i in 0.. personList.size-1) {
 
-        //val imgs:TypedArray = getResources().obtainTypedArray(R.array.QuizArray);
+                //Imageview og textview
+                val imgView = ImageView(this);
+                val nameTextView = TextView(this)
 
+                //Setter størrelse på bilde, og legger det til layouten.
+                val lp = LinearLayout.LayoutParams(width, height)
+                imgView.setLayoutParams(lp)
+                layout.addView(imgView)
 
+                //TextView: Navn på person
+                nameTextView.setText(personList.get(i).first_name)
+                nameTextView.gravity = Gravity.CENTER
+                layout.addView(nameTextView)
 
+                //Dekoder bildet
+                val bmImg: Bitmap = BitmapFactory.decodeFile(personList.get(i).picturePath)
+                imgView.setImageBitmap(bmImg)
 
-        //db?.personDao()?.insertAll(person)
-
-      //  val testPic:List<Person>? = db?.personDao()?.getAll()
-        //val test1 = testPic?.get(0)?.picturePath
-        //Log.i("ours", "TEST: " + test1)
-
-        /*
-        for (i in 0..imgs.length()-1) {
-
-            imgs.getResourceId(i, 0);
-
-            //Imageview og textview
-            val imgView = ImageView(this);
-            val nameTextView = TextView(this)
-
-            //Konverterer dp til piksler
-            val height: Int = (300 * resources.displayMetrics.density).toInt()
-            val width: Int = (300 * resources.displayMetrics.density).toInt()
-
-
-            imgView.setImageResource(imgs.getResourceId(i, 0));
-            //Setter størrelse på Imageviewet.
-            val lp = LinearLayout.LayoutParams(width, height)
-            imgView.setLayoutParams(lp)
-            layout.addView(imgView)
-
-            //Hashmap med bilde og navn
-            val dataPic = HashMap<ImageView, String>()
-            dataPic.put(imgView, "Navn")
-
-            nameTextView.setText(dataPic.get(imgView))
-            nameTextView.gravity = Gravity.CENTER
-
-            layout.addView(nameTextView)
+            }
         }
-        imgs.recycle();
-        */
+
+
     }
 
 

@@ -16,6 +16,7 @@ import android.support.v4.content.FileProvider
 
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.*
 
 
@@ -26,11 +27,6 @@ import java.util.*
 
 class AddPicture : Activity() {
 
-
-    //Bruk til å vise bildet
-    /*Bitmap bmImg = BitmapFactory.decodeFile("path of your img1");
-imageView.setImageBitmap(bmImg);
-*/
 
     private var db: AppDatabase? = null
 
@@ -98,12 +94,13 @@ imageView.setImageBitmap(bmImg);
             }
         }
     }
+
+    //Etter bildet er tatt...
     override fun onActivityResult(c:Int,r:Int,data:Intent){
         if (c == REQUEST_TAKE_PHOTO && r == RESULT_OK) {
-            Log.i("Ours", "Test123")
-            val person = Person(uid = 0, first_name = "Atle", picturePath = mCurrentPhotoPath)
-            Log.i("Ours","Person made! " + person.picturePath)
-            db?.personDao()?.insertPerson(person)
+            val person = Person()
+            //val person = Person(uid = 0, first_name = "Atle", picturePath = mCurrentPhotoPath)
+
 
             //Størrelse på bilde i piksler
             val height: Int = (300 * resources.displayMetrics.density).toInt()
@@ -125,23 +122,35 @@ imageView.setImageBitmap(bmImg);
             editText.setGravity(Gravity.CENTER)
             layout.addView(editText)
 
-            //Knapp
-            
+            //Deklarering av knapp
+            val btn = Button(this)
+            btn.setText(R.string.addPerson)
+            btn.gravity=Gravity.CENTER
+            layout.addView(btn)
+
+
+            //Legger til personen i databasen
+            btn.setOnClickListener{v: View? ->
+                person.first_name=editText.text.toString()
+                person.picturePath=mCurrentPhotoPath
+                person.uid=0
+                Log.i("Ours", "TEST" + person)
+                db?.personDao()?.insertPerson(person)
+
+                //TODO: Legge inn bekreftelse på at den er lagt til. Toast feks.
+                //og tilbake til Datactivity?
+
+
+            }
+
+
 
             //Dekoder bildet
-            val bmImg:Bitmap = BitmapFactory.decodeFile(person.picturePath)
-            imageView.setImageBitmap(bmImg);
+            val bmImg:Bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath)
+            imageView.setImageBitmap(bmImg)
 
         }
 
-
-
-
-
-
-        //val test = db?.personDao()?.getAll()?.isEmpty()
-       // db.personDao().insertAll(person)
-        //Manager.getInstance().savePerson(person);
-
-
-} }
+}
+  
+}
