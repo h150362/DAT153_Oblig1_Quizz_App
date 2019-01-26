@@ -9,4 +9,13 @@
     <string name="back">Tilbake</string>
     <string name="namePerson">Hvem er dette?</string>
     <string name="addPerson">Legg Til Person</string>
+    <string name="personAdded">Person lagt til!</string>
+    <string name="addNewPictureAlertTitle">Nytt bilde eller et eksiterende?</string>
+    <string name="AddNewPictureAlertMsg">Velg om du vil ta et nytt bilde eller velge et eksiterende.</string>
+    <string name="newPhoto">Ta nytt bilde</string>
+    <string name="existingPhoto">Legg til eksisterende bilde</string>
+    <string name="cancel">Avbryt</string>
+    <string name="canceled">Avbrutt</string>
+    <string name="submitAnswer">Avgi Svar</string>
+    <string name="score">Poengsum</string>
 </resources>

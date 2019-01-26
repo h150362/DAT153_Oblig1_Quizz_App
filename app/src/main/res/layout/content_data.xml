@@ -11,21 +11,22 @@
 
     <Button
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="55dp"
             android:id="@+id/AddPicture"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="80dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="80dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="50dp"
             android:text="@string/addPicture"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView2"/>
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2" app:layout_constraintStart_toEndOf="@+id/startGame"
+            android:layout_marginStart="30dp"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"/>
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/AddPicture"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="50dp" android:layout_marginEnd="50dp" android:id="@+id/scrollView2"
-            android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/startGame">
         <LinearLayout
                 android:id="@+id/linear"
                 android:layout_width="300dp"
@@ -34,4 +35,12 @@
                 android:orientation="vertical">
         </LinearLayout>
     </ScrollView>
+    <Button
+            android:text="@string/StartGame"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:id="@+id/startGame" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="50dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView2" app:layout_constraintEnd_toStartOf="@+id/AddPicture"
+            android:layout_marginEnd="30dp"/>
 </android.support.constraint.ConstraintLayout>

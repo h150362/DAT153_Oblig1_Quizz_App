@@ -1,8 +1,9 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.accessibilityservice.AccessibilityService
 import android.app.Activity
-import android.arch.lifecycle.ViewModel
-import android.arch.persistence.room.Room
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -30,14 +31,17 @@ class AddPicture : Activity() {
 
     private var db: AppDatabase? = null
 
+    var mCurrentPhotoPath: String = ""
+    val REQUEST_TAKE_PHOTO = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_picture)
-        //setSupportActionBar(toolbar)
 
         db = AppDatabase.getInstance(this)
+
+        //Åpner kameraet
+        dispatchTakePictureIntent()
 
         val newPicture = findViewById<Button>(R.id.newPhoto)
         newPicture.setOnClickListener{
@@ -45,15 +49,7 @@ class AddPicture : Activity() {
         }
 
 
-
-
     }
-
-
-
-    var mCurrentPhotoPath: String = ""
-    val REQUEST_TAKE_PHOTO = 1
-
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
@@ -139,7 +135,7 @@ class AddPicture : Activity() {
 
                 //TODO: Legge inn bekreftelse på at den er lagt til. Toast feks.
                 //og tilbake til Datactivity?
-
+                addedToDataBaseAlert()
 
             }
 
@@ -152,5 +148,30 @@ class AddPicture : Activity() {
         }
 
 }
-  
+    //
+    fun addedToDataBaseAlert() {
+
+        val builder: AlertDialog.Builder? = this@AddPicture?.let { AlertDialog.Builder(it)}
+
+      //  val alertText = TextView(this)
+       // alertText.setText(R.string.personAdded)
+       // alertText.gravity = Gravity.CENTER
+
+
+        // builder?.setCustomTitle(alertText)
+        //builder?.setView(alertText)
+        builder?.setMessage(R.string.personAdded)?.setTitle(R.string.personAdded)
+
+        builder?.setPositiveButton("Ok"){dialog, which ->
+            //Brukeren trykket på ok knappen
+            intent = Intent(this, DataActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
+        val dialog: AlertDialog? = builder?.create()
+        dialog?.show()
+
+    }
 }

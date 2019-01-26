@@ -5,10 +5,19 @@
     <string name="StartGame">Start Game</string>
     <string name="Pictures">Pictures</string>
     <string name="title_activity_data">DataActivity</string>
-    <string name="addPicture">Add Picture</string>
+    <string name="addPicture">Add Photo</string>
     <string name="title_activity_quiz">QuizActivity</string>
     <string name="title_activity_add_picture">AddPicture</string>
     <string name="back">Back</string>
     <string name="namePerson">Who is this?</string>
     <string name="addPerson">Add Person</string>
+    <string name="personAdded">Person is added!</string>
+    <string name="addNewPictureAlertTitle">New photo or existing one?</string>
+    <string name="AddNewPictureAlertMsg">Choose if you want to take a new photo or add an existing one.</string>
+    <string name="newPhoto">Take a new photo</string>
+    <string name="existingPhoto">Add existing photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="canceled">Canceled</string>
+    <string name="submitAnswer">Submit Answer</string>
+    <string name="score">Score</string>
 </resources>

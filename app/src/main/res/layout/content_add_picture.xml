@@ -10,7 +10,7 @@
         tools:context=".AddPicture">
 
     <Button
-            android:text="Take a new photo"
+            android:text="@string/newPhoto"
             android:layout_width="0dp"
             android:layout_height="49dp"
             android:id="@+id/newPhoto" app:layout_constraintStart_toEndOf="@+id/AddExistingButton"
@@ -18,7 +18,7 @@
             android:layout_marginTop="10dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
     />
     <Button
-            android:text="Add Existing Photo"
+            android:text="@string/existingPhoto"
             android:layout_width="0dp"
             android:layout_height="46dp"
             android:id="@+id/AddExistingButton"
