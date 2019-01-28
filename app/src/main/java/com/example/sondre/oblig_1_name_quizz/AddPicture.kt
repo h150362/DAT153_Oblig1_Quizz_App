@@ -40,7 +40,7 @@ class AddPicture : Activity() {
 
         db = AppDatabase.getInstance(this)
 
-        //Åpner kameraet
+        //
         dispatchTakePictureIntent()
 
         val newPicture = findViewById<Button>(R.id.newPhoto)

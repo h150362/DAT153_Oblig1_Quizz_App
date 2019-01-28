@@ -108,7 +108,7 @@ class DataActivity : AppCompatActivity() {
         //TODO: Funker ikke enda...
 
         builder?.setNegativeButton(R.string.existingPhoto) {dialog, which ->
-
+           // intent = Intent(this, AddPicture::class.java)g/*
         }
 
         //Avbryt knapp.
