@@ -6,12 +6,9 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import java.security.AccessControlContext
 
-
 @Database(entities = arrayOf(Person::class), version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
-
-
 
 
         companion object {
@@ -20,35 +17,16 @@ abstract class AppDatabase : RoomDatabase() {
 
             fun getInstance(context: Context): AppDatabase? {
 
-                //INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                //    AppDatabase::class.java, "person.db").allowMainThreadQueries().build()
-
                 if (INSTANCE == null) {
                     synchronized(AppDatabase::class) {
                         INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase::class.java, "person.db").allowMainThreadQueries().build()//Må fjerne allowMainThreadQueires
-                            //.build()
+
+                            //AllowMainThreadQueries er dårlig valg, børr byttes ut...
+                            AppDatabase::class.java, "person.db").allowMainThreadQueries().build()
                     }
                 }
-
-                return INSTANCE
-
+                   return INSTANCE
                     }
 
         }
-
-
-
-/*
-        fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "person.db").build()
-
-        fun getInstance(context: Context): AppDatabase =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
-            }
-
-
-
-*/
 }

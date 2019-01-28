@@ -1,5 +1,6 @@
 package com.example.sondre.oblig_1_name_quizz
 
+import android.app.AlertDialog
 import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +15,12 @@ import android.widget.Button
 
 import kotlinx.android.synthetic.main.activity_main.*
 
+/*
+    Koden er ikke perfekt, er flere steder samme kode brukes flere ganger.
+    Trenger endel opprydning...
 
+    TODO: Mangler legg til eksisterende bilde...
+ */
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,10 +36,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         db = AppDatabase.getInstance(this)
+        val personList : List<Person>? = db?.personDao()?.getAll()
 
-
-
-
+        Log.i("ours", personList?.size.toString())
 
         val databaseButton = findViewById<Button>(R.id.picture) as Button
         databaseButton.setOnClickListener{
@@ -43,9 +48,31 @@ class MainActivity : AppCompatActivity() {
 
         val quizButton = findViewById<Button>(R.id.start)
         quizButton.setOnClickListener{
-            intent = Intent(this, QuizActivity::class.java)
-            startActivity(intent)
+            if(personList?.size != 0) {
+                intent = Intent(this, QuizActivity::class.java)
+                startActivity(intent)
+            } else {
+                noPicturesAlert()
+            }
+
     }}
+
+    //Alert hvis det ikke er lagt til noen bider...
+    fun noPicturesAlert(){
+        val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
+
+        builder?.setMessage(R.string.noPictureMsg)?.setTitle(R.string.noPictureError)
+
+        builder?.setPositiveButton(R.string.addPicture){dialog, which ->
+            intent = Intent(this, DataActivity::class.java)
+            startActivity(intent)
+        }
+
+        builder?.setNegativeButton(R.string.cancel) {dialog, which -> }
+
+        val dialog: AlertDialog? = builder?.create()
+        dialog?.show()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

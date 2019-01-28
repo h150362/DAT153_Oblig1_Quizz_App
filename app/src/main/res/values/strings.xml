@@ -19,5 +19,15 @@
     <string name="cancel">Cancel</string>
     <string name="canceled">Canceled</string>
     <string name="submitAnswer">Submit Answer</string>
-    <string name="score">Score</string>
+    <string name="scoreTxt">Score</string>
+    <string name="correctAnswer">Correct Answer!</string>
+    <string name="correctAnswerIs">"Correct answer is: "</string>
+    <string name="yourAnswerWas">Your answer was:</string>
+    <string name="wrongAnswerAlert">Wrong Answer!</string>
+    <string name="noPictureError">No Picture Added!</string>
+    <string name="noPictureMsg">Add picture to play...</string>
+    <string name="gameFinished">Game is Finished.</string>
+    <string name="yourScore">Your Score:</string>
+    <string name="newGame">New Game?</string>
+    <string name="mainMenu">Main menu</string>
 </resources>

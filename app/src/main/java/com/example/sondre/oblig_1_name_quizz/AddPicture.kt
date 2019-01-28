@@ -153,13 +153,6 @@ class AddPicture : Activity() {
 
         val builder: AlertDialog.Builder? = this@AddPicture?.let { AlertDialog.Builder(it)}
 
-      //  val alertText = TextView(this)
-       // alertText.setText(R.string.personAdded)
-       // alertText.gravity = Gravity.CENTER
-
-
-        // builder?.setCustomTitle(alertText)
-        //builder?.setView(alertText)
         builder?.setMessage(R.string.personAdded)?.setTitle(R.string.personAdded)
 
         builder?.setPositiveButton("Ok"){dialog, which ->

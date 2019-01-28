@@ -17,5 +17,15 @@
     <string name="cancel">Avbryt</string>
     <string name="canceled">Avbrutt</string>
     <string name="submitAnswer">Avgi Svar</string>
-    <string name="score">Poengsum</string>
+    <string name="scoreTxt">Poengsum</string>
+    <string name="correctAnswer">Riktig Svar!</string>
+    <string name="correctAnswerIs">"Riktig svar er: "</string>
+    <string name="yourAnswerWas">"Ditt svar var: "</string>
+    <string name="wrongAnswerAlert">Feil Svar!</string>
+    <string name="noPictureError">NB! Inger bilder lagt til!</string>
+    <string name="noPictureMsg">Legg til bilder for å spille.</string>
+    <string name="gameFinished">Spillet er slutt.</string>
+    <string name="yourScore">"Din Poengsum: "</string>
+    <string name="newGame">Spill på nytt?</string>
+    <string name="mainMenu">Hovedmeny</string>
 </resources>
