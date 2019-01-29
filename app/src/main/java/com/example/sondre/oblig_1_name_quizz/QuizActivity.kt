@@ -144,7 +144,7 @@ class QuizActivity : AppCompatActivity() {
 
         val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
         val alertMsg = resources.getString(R.string.correctAnswerIs) + correct +"!\n" +
-                resources.getString(R.string.yourAnswerWas)
+                   resources.getString(R.string.yourAnswerWas)+ answer
 
         builder?.setMessage(alertMsg)?.setTitle(R.string.wrongAnswerAlert)
 

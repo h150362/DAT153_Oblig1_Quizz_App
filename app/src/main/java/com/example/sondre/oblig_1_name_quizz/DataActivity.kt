@@ -71,6 +71,7 @@ class DataActivity : AppCompatActivity() {
                 //Imageview og textview
                 val imgView = ImageView(this);
                 val nameTextView = TextView(this)
+                val deleteButton = Button(this)
 
                 //Setter størrelse på bilde, og legger det til layouten.
                 val lp = LinearLayout.LayoutParams(width, height)
@@ -81,6 +82,15 @@ class DataActivity : AppCompatActivity() {
                 nameTextView.setText(personList.get(i).first_name)
                 nameTextView.gravity = Gravity.CENTER
                 layout.addView(nameTextView)
+                deleteButton.setText("Delete " + personList.get(i).first_name)
+                layout.addView(deleteButton)
+                deleteButton.setOnClickListener {
+                    db?.personDao()?.delete(personList.get(i))
+                    val toast = Toast.makeText(this, "Person deleted", Toast.LENGTH_LONG)
+                    toast.show()
+                    intent = Intent(this, DataActivity::class.java)
+                    startActivity(intent)
+                }
 
                 //Dekoder bildet
                 val bmImg: Bitmap = BitmapFactory.decodeFile(personList.get(i).picturePath)
