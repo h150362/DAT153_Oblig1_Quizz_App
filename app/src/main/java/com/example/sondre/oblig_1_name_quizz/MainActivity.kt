@@ -2,18 +2,26 @@ package com.example.sondre.oblig_1_name_quizz
 
 import android.app.AlertDialog
 import android.arch.persistence.room.Room
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
 
 
 import kotlinx.android.synthetic.main.activity_main.*
+import android.content.DialogInterface
+import android.widget.TextView
+import kotlinx.android.synthetic.main.content_main.*
+
 
 /*
     Koden er ikke perfekt, er flere steder samme kode brukes flere ganger.
@@ -27,13 +35,54 @@ class MainActivity : AppCompatActivity() {
 
     private var db: AppDatabase? = null
 
+    companion object {
+        val PREF_NAME : String = "PrefFile"
 
-    private val mUiHandler = Handler()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val prefs : SharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val ownerText : String? = prefs.getString("owner", null)
+        val ownerTxtView : TextView =  findViewById<TextView>(R.id.owner)
+
+        if (ownerText != null) {
+            val name : String = prefs.getString("owner", "No owner defined")
+            ownerTxtView.setText("Logged in as: " + ownerText)
+        } else {
+            val editor : SharedPreferences.Editor = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit()
+            var ownerName : String = ""
+
+
+            //Alert hvor man skriver inn owner
+            val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
+            builder?.setTitle("Owner")
+
+            val input : EditText = EditText(this)
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+            builder?.setView(input)
+
+            builder?.setPositiveButton("Add Owner"){dialog, which ->
+                ownerName = input.text.toString()
+
+                //Edit sharedpreferences
+                editor.putString("owner", ownerName)
+                editor.apply()
+
+
+                ownerTxtView.setText("Logged in as: " + ownerName)
+
+            }
+            builder?.show()
+
+
+
+        }
+
 
         db = AppDatabase.getInstance(this)
         val personList : List<Person>? = db?.personDao()?.getAll()
@@ -89,4 +138,7 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
+
 }

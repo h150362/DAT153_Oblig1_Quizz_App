@@ -33,5 +33,13 @@
             app:layout_constraintBottom_toTopOf="@+id/start" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="92dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="92dp"/>
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/owner" android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/picture" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="300dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="150dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="150dp" android:textAlignment="center"/>
 
 </android.support.constraint.ConstraintLayout>
