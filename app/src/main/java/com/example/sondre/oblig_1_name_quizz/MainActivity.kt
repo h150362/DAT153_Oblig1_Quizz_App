@@ -18,9 +18,9 @@ import android.widget.EditText
 
 
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.DialogInterface
+
 import android.widget.TextView
-import kotlinx.android.synthetic.main.content_main.*
+
 
 
 /*
@@ -40,49 +40,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val prefs : SharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val ownerText : String? = prefs.getString("owner", null)
-        val ownerTxtView : TextView =  findViewById<TextView>(R.id.owner)
-
-        if (ownerText != null) {
-            val name : String = prefs.getString("owner", "No owner defined")
-            ownerTxtView.setText("Logged in as: " + ownerText)
-        } else {
-            val editor : SharedPreferences.Editor = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit()
-            var ownerName : String = ""
-
-
-            //Alert hvor man skriver inn owner
-            val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
-            builder?.setTitle("Owner")
-
-            val input : EditText = EditText(this)
-            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME
-            builder?.setView(input)
-
-            builder?.setPositiveButton("Add Owner"){dialog, which ->
-                ownerName = input.text.toString()
-
-                //Edit sharedpreferences
-                editor.putString("owner", ownerName)
-                editor.apply()
-
-
-                ownerTxtView.setText("Logged in as: " + ownerName)
-
-            }
-            builder?.show()
-
-
-
-        }
-
+        //Sjekkar om det er shared preferences frå før, visst ikkje kjem dialog-boks opp
+        checkPreferences()
 
         db = AppDatabase.getInstance(this)
         val personList : List<Person>? = db?.personDao()?.getAll()
@@ -106,6 +70,72 @@ class MainActivity : AppCompatActivity() {
 
     }}
 
+    fun checkPreferences() {
+        val prefs : SharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val ownerText : String? = prefs.getString("owner", null)
+        val ownerTxtView : TextView =  findViewById<TextView>(R.id.owner)
+
+        if (ownerText != null) {
+            val name: String = prefs.getString("owner", "No owner defined")
+            ownerTxtView.setText("Logged in as: " + ownerText)
+        } else {
+            val editor: SharedPreferences.Editor = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit()
+            var ownerName: String = ""
+
+            //Alert hvor man skriver inn owner
+            val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it) }
+            builder?.setTitle("Owner")
+
+            val input: EditText = EditText(this)
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+            builder?.setView(input)
+
+            builder?.setPositiveButton("Add Owner") { dialog, which ->
+                ownerName = input.text.toString()
+
+                //Edit sharedpreferences
+                editor.putString("owner", ownerName)
+                editor.apply()
+
+
+                ownerTxtView.setText("Logged in as: " + ownerName)
+            }
+            builder?.show()
+        }
+    }
+    fun changeName() {
+        val ownerTxtView : TextView =  findViewById<TextView>(R.id.owner)
+
+            val editor: SharedPreferences.Editor = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit()
+            var ownerName: String = ""
+
+
+            //Alert hvor man skriver inn owner
+            val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it) }
+            builder?.setTitle("Owner")
+
+            val input: EditText = EditText(this)
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PERSON_NAME
+            builder?.setView(input)
+
+            builder?.setPositiveButton("Change owner") { dialog, which ->
+                ownerName = input.text.toString()
+
+                //Edit sharedpreferences
+                editor.putString("owner", ownerName)
+                editor.apply()
+
+
+                ownerTxtView.setText("Logged in as: " + ownerName)
+
+            }
+            builder?.show()
+
+
+        }
+
+
+
     //Alert hvis det ikke er lagt til noen bider...
     fun noPicturesAlert(){
         val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
@@ -126,22 +156,48 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+        /* val prefs = findViewById<Button>(R.id.shared_prefs)
+        prefs.setOnClickListener {
+            Log.i("Ours", "Clicked")
+        } */
+
+
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            R.id.shared_prefs -> true
+     fun openSharedPreferences() {
+        val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
+        val alertMsg = "Logged in as "
 
+        builder?.setMessage(alertMsg)?.setTitle("Shared Preferences")
 
-            else -> super.onOptionsItemSelected(item)
+        //Brukeren trykket på ok knappen
+        builder?.setPositiveButton("Ok"){dialog, which ->
         }
+
+        val dialog: AlertDialog? = builder?.create()
+        dialog?.show()
     }
 
 
 
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        R.id.shared_prefs -> consume {
+            changeName()
+        }
+    else -> super.onOptionsItemSelected(item)
+    }
+
+    inline fun consume(f: () -> Unit): Boolean {
+        f()
+        return true
+    }
+
+
 }
+
+

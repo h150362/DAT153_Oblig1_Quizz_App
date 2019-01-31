@@ -1,7 +1,7 @@
 package com.example.sondre.oblig_1_name_quizz
 
 import org.junit.Test
-
+import com.example.sondre.oblig_1_name_quizz.QuizActivity
 import org.junit.Assert.*
 
 /**
@@ -13,5 +13,9 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+
+    }
+    fun scoreIsCorrect() {
+
     }
 }
