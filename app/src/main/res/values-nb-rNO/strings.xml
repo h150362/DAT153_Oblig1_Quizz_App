@@ -28,4 +28,5 @@
     <string name="yourScore">"Din Poengsum: "</string>
     <string name="newGame">Spill på nytt?</string>
     <string name="mainMenu">Hovedmeny</string>
+    <string name="changeUser">Bytt bruker</string>
 </resources>
