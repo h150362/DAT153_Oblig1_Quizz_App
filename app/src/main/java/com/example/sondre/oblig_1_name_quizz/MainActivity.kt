@@ -2,7 +2,9 @@ package com.example.sondre.oblig_1_name_quizz
 
 import android.app.AlertDialog
 import android.arch.persistence.room.Room
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 
@@ -34,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+
+
+
+
+
 
         db = AppDatabase.getInstance(this)
         val personList : List<Person>? = db?.personDao()?.getAll()
@@ -86,6 +94,9 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.shared_prefs -> true
+
+
             else -> super.onOptionsItemSelected(item)
         }
     }
