@@ -1,20 +1,14 @@
 package com.example.sondre.oblig_1_name_quizz
 
+
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.res.TypedArray
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-
-
 import android.view.Gravity
 import android.widget.*
-
-
 import kotlinx.android.synthetic.main.activity_data.*
 
 
@@ -142,6 +136,7 @@ class DataActivity : AppCompatActivity() {
 
         val dialog: AlertDialog? = builder?.create()
         dialog?.show()
+
     }
 }
 

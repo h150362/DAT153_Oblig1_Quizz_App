@@ -12,7 +12,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log
 import android.widget.*
-
+import com.example.sondre.oblig_1_name_quizz.R.string.wrongAnswerAlert
 
 
 import kotlinx.android.synthetic.main.activity_quiz.*
@@ -24,6 +24,7 @@ import org.w3c.dom.Text
 class QuizActivity : AppCompatActivity() {
 
     private var db: AppDatabase? = null
+    private var theScore : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class QuizActivity : AppCompatActivity() {
         var name : String? = ""
         var path : String? = ""
 
-        var theScore : Int = 0
+
         var i : Int = 0
         val editText = findViewById<EditText>(R.id.answer)
         val score = findViewById<TextView>(R.id.score)
@@ -75,13 +76,8 @@ class QuizActivity : AppCompatActivity() {
             quizButton.setOnClickListener {
 
                 val inputSvar = editText.text.toString()
-                if(checkAnswer(inputSvar, name!!)) {
-                    //Riktig svar
-                    theScore = theScore.inc()
-                    correctAnswerToast()
-                } else {
-                    wrongAnswerAlert(inputSvar, name!!)
-                }
+                checkAnswer(inputSvar, name!!)
+
 
                 //Score textView...
                 val textScore : String = resources.getString(R.string.scoreTxt)
@@ -109,6 +105,11 @@ class QuizActivity : AppCompatActivity() {
 
     }
 
+    fun  updateScore() : Int {
+        theScore = theScore.inc()
+        return theScore
+    }
+
     fun gameFinishedAlert(score : Int, antall : Int){
 
         val builder: AlertDialog.Builder? = this?.let { AlertDialog.Builder(it)}
@@ -131,13 +132,17 @@ class QuizActivity : AppCompatActivity() {
         dialog?.show()
     }
 
-     fun checkAnswer(input: String, correct: String): Boolean{
-        if(input.equals(correct)) {
-            return true
-        }
-            return false
-        }
+     fun checkAnswer(input: String, correct: String): Boolean {
+         if (input.equals(correct)) {
+             updateScore()
+             correctAnswerToast()
+             return true
+         } else {
+             wrongAnswerAlert(input, correct!!)
 
+             return false
+         }
+     }
 
     //Pop-up boks for feil svar.
     fun wrongAnswerAlert(answer: String, correct: String) {

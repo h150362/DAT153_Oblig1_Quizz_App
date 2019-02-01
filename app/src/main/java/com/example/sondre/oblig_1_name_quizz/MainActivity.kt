@@ -1,26 +1,20 @@
 package com.example.sondre.oblig_1_name_quizz
 
+
 import android.app.AlertDialog
-import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
-
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.text.InputType
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-
-
-import kotlinx.android.synthetic.main.activity_main.*
-
 import android.widget.TextView
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 /*
